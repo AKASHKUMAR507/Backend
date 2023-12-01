@@ -1,9 +1,19 @@
-
 import mongoose from "mongoose";
 import { DB_NAME } from "./constant";
 import connectDB from "./db";
+import { app } from "./app";
+import { PORT } from "./config";
 
-connectDB();
+
+connectDB()
+    .then(() => {
+        app.listen(PORT || 5000, () => {
+            console.log(`App listening on port ${PORT}`);
+        })
+    })
+    .catch((error) => {
+        console.log("Database connection error: " + error);
+    })
 
 
 
