@@ -1,8 +1,7 @@
 import mongoose from "mongoose";
-import { DB_NAME } from "./constant";
 import connectDB from "./db";
-import { app } from "./app";
 import { PORT } from "./config";
+import { app } from "./app";
 
 
 connectDB()
@@ -15,9 +14,11 @@ connectDB()
         console.log("Database connection error: " + error);
     })
 
-
-
-
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error'));
+db.once('open', () => {
+    console.log('DB connected...');
+})
 
 
 
