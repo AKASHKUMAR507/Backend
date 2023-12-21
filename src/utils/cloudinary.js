@@ -3,12 +3,13 @@ import fs from 'fs';
 import { CLOUDINARY_API_KEY, CLOUDINARY_NAME, CLOUDINARY_SECRET } from '../config';
 
 cloudinary.config({
-    CLOUDINARY_NAME,
-    CLOUDINARY_API_KEY,
-    CLOUDINARY_SECRET
+    cloud_name: CLOUDINARY_NAME, 
+    api_key: CLOUDINARY_API_KEY, 
+    api_secret: CLOUDINARY_SECRET,
+    secure: true,
 });
 
-const uploadCloudinary = async (localFilePath) => {
+const uploadOnCloudinary = async (localFilePath) => {
     try {
         if (!localFilePath) return null;
         // upload file in cloudinary
@@ -24,7 +25,7 @@ const uploadCloudinary = async (localFilePath) => {
     }
 }
 
-export {uploadCloudinary}
+export { uploadOnCloudinary }
 
 
 // cloudinary.v2.uploader.upload("https://upload.wikimedia.org/wikipedia/commons/a/ae/Olympic_flag.jpg",
